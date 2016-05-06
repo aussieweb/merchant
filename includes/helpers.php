@@ -10,7 +10,7 @@
 	 */
 
 	// Set session data
-	function beacon_set_session( $name, $value, $sanitize = null ) {
+	function merchant_set_session( $name, $value, $sanitize = null ) {
 
 		// Start session
 		$wp_session = WP_Session::get_instance();
@@ -28,7 +28,7 @@
 	}
 
 	// Get session data
-	function beacon_get_session( $name, $unset = false ) {
+	function merchant_get_session( $name, $unset = false ) {
 
 		// Start session
 		$wp_session = WP_Session::get_instance();
@@ -51,7 +51,7 @@
 	}
 
 	// Unset session data
-	function beacon_unset_session( $name ) {
+	function merchant_unset_session( $name ) {
 		$wp_session = WP_Session::get_instance();
 		unset( $wp_session[$name] );
 	}
@@ -64,7 +64,7 @@
 	 */
 
 	// Get and sanitize the current URL
-	function beacon_get_url() {
+	function merchant_get_url() {
 		$url  = @( $_SERVER['HTTPS'] != 'on' ) ? 'http://' . $_SERVER['SERVER_NAME'] :  'https://' . $_SERVER['SERVER_NAME'];
 		$url .= ( $_SERVER['SERVER_PORT'] !== 80 ) ? ":" . $_SERVER['SERVER_PORT'] : '';
 		$url .= $_SERVER['REQUEST_URI'];
@@ -72,7 +72,7 @@
 	}
 
 	// Get the site domain and remove the www.
-	function beacon_get_site_domain( $url = null ) {
+	function merchant_get_site_domain( $url = null ) {
 		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
 		if ( substr( $sitename, 0, 4 ) == 'www.' ) {
 			$sitename = substr( $sitename, 4 );
@@ -81,7 +81,7 @@
 	}
 
 	// Prepare URL for status string
-	function beacon_prepare_url( $url ) {
+	function merchant_prepare_url( $url ) {
 
 		// If URL has a '?', add an '&'.
 		// Otherwise, add a '?'.
@@ -99,7 +99,7 @@
 
 
 	// Remove a $_GET variable from the URL
-	function beacon_clean_url( $variable, $url ) {
+	function merchant_clean_url( $variable, $url ) {
 		$new_url = preg_replace('/(?:&|(\?))' . $variable . '=[^&]*(?(1)&|)?/i', '$1', $url);
 		$last_char = substr( $new_url, -1 );
 		if ( $last_char == '?' ) {
@@ -119,7 +119,7 @@
 	 * @param  string $content Markdown content
 	 * @return string          Converted content
 	 */
-	function beacon_process_jetpack_markdown( $content ) {
+	function merchant_process_jetpack_markdown( $content ) {
 
 		// If markdown class is defined, convert content
 		if ( class_exists( 'WPCom_Markdown' ) ) {
@@ -146,7 +146,7 @@
 	 * @param  string $suffix   The suffix to denote the markdown version of the content
 	 * @return string           The content
 	 */
-	function beacon_get_jetpack_markdown( $options, $name, $suffix = '_markdown' ) {
+	function merchant_get_jetpack_markdown( $options, $name, $suffix = '_markdown' ) {
 
 		// If markdown class is defined, get markdown content
 		if ( class_exists( 'WPCom_Markdown' ) && array_key_exists( $name . $suffix, $options ) && !empty( $options[$name . $suffix] ) ) {

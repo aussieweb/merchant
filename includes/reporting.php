@@ -23,14 +23,14 @@
 
 	// Create theme options menu
 	// The content that's rendered on the menu page.
-	function beacon_theme_reporting_render_page() {
+	function merchant_theme_reporting_render_page() {
 
 		$plans = get_posts(
 			array(
 				'posts_per_page'   => -1,
 				'orderby'          => 'menu_order',
 				'order'            => 'DESC',
-				'post_type'        => 'beacon-prices',
+				'post_type'        => 'merchant-prices',
 				'post_status'      => 'any',
 			)
 		);
@@ -40,7 +40,7 @@
 				'posts_per_page'   => -1,
 				'orderby'          => 'menu_order',
 				'order'            => 'DESC',
-				'post_type'        => 'beacon-promos',
+				'post_type'        => 'merchant-promos',
 				'post_status'      => 'any',
 			)
 		);
@@ -55,7 +55,7 @@
 
 		?>
 		<div class="wrap">
-			<h2><?php _e( 'Beacon Sales Reports', 'beacon' ); ?></h2>
+			<h2><?php _e( 'Sales Reports', 'merchant' ); ?></h2>
 			<br>
 
 			<style type="text/css">
@@ -64,7 +64,7 @@
 			 * Styling for tables
 			 */
 			/* line 6, /Users/cferdinandi/Sites/kraken/src/sass/components/_tables.scss */
-			.beacon-table {
+			.merchant-table {
 			  background-color: #ffffff;
 			  border-collapse: collapse;
 			  border-spacing: 0;
@@ -75,46 +75,46 @@
 			}
 
 			/* line 14, /Users/cferdinandi/Sites/kraken/src/sass/components/_tables.scss */
-			.beacon-table th,
-			.beacon-table td {
+			.merchant-table th,
+			.merchant-table td {
 			  text-align: left;
 			  padding: 0.5em;
 			}
 
-			.beacon-table tr {
+			.merchant-table tr {
 				border-left: 1px solid #e5e5e5;
 				border-right: 1px solid #e5e5e5;
 			}
 
-			.beacon-table tr:first-child {
+			.merchant-table tr:first-child {
 				border-top: 1px solid #e5e5e5;
 			}
 
-			.beacon-table tr:last-child {
+			.merchant-table tr:last-child {
 				border-bottom: 1px solid #e5e5e5;
 			}
 
 			/*@media (min-width: 40em) {
-				.beacon-table th:first-child,
-				.beacon-table td:first-child {
+				.merchant-table th:first-child,
+				.merchant-table td:first-child {
 					border-left: 1px solid #e5e5e5;
 				}
 
-				.beacon-table th:last-child,
-				.beacon-table td:last-child {
+				.merchant-table th:last-child,
+				.merchant-table td:last-child {
 					border-right: 1px solid #e5e5e5;
 				}
 			}*/
 
 			/* line 20, /Users/cferdinandi/Sites/kraken/src/sass/components/_tables.scss */
-			.beacon-table th {
+			.merchant-table th {
 			  border-bottom: 0.125em solid #e5e5e5;
 			  font-weight: bold;
 			  vertical-align: bottom;
 			}
 
 			/* line 27, /Users/cferdinandi/Sites/kraken/src/sass/components/_tables.scss */
-			.beacon-table td {
+			.merchant-table td {
 			  border-top: 1px solid #e5e5e5;
 			  vertical-align: top;
 			}
@@ -123,7 +123,7 @@
 			 * Adds zebra striping
 			 */
 			/* line 35, /Users/cferdinandi/Sites/kraken/src/sass/components/_tables.scss */
-			.beacon-table tbody tr:nth-child(odd) {
+			.merchant-table tbody tr:nth-child(odd) {
 			  background-color: #f9f9f9;
 			}
 
@@ -134,24 +134,24 @@
 			 */
 			@media (max-width: 40em) {
 			  /* line 57, /Users/cferdinandi/Sites/kraken/src/sass/components/_tables.scss */
-			  .beacon-table thead {
+			  .merchant-table thead {
 			    display: none;
 			    visibility: hidden;
 			  }
 			  /* line 62, /Users/cferdinandi/Sites/kraken/src/sass/components/_tables.scss */
-			  .beacon-table tr {
+			  .merchant-table tr {
 			    border-top: 1px solid #ededed;
 			    display: block;
 			    padding: 0.5em;
 			  }
 			  /* line 68, /Users/cferdinandi/Sites/kraken/src/sass/components/_tables.scss */
-			  .beacon-table td {
+			  .merchant-table td {
 			    border: 0;
 			    display: block;
 			    padding: 0.25em;
 			  }
 			  /* line 73, /Users/cferdinandi/Sites/kraken/src/sass/components/_tables.scss */
-			  .beacon-table td:before {
+			  .merchant-table td:before {
 			    content: attr(data-label);
 			    display: block;
 			    font-weight: bold;
@@ -167,7 +167,7 @@
 			th.sort-header::selection {
 			  background:transparent;
 			  }
-			.beacon-table th.sort-header:after {
+			.merchant-table th.sort-header:after {
 			  content:'';
 			  float:right;
 			  margin-top:7px;
@@ -176,22 +176,22 @@
 			  border-color:#404040 transparent;
 			  visibility:hidden;
 			  }
-			.beacon-table th.sort-header:hover:after {
+			.merchant-table th.sort-header:hover:after {
 			  visibility:visible;
 			  }
-			.beacon-table th.sort-up:after,
-			.beacon-table th.sort-down:after,
-			.beacon-table th.sort-down:hover:after {
+			.merchant-table th.sort-up:after,
+			.merchant-table th.sort-down:after,
+			.merchant-table th.sort-down:hover:after {
 			  visibility:visible;
 			  opacity:0.4;
 			  }
-			.beacon-table th.sort-up:after {
+			.merchant-table th.sort-up:after {
 			  border-bottom:none;
 			  border-width:4px 4px 0;
 			  }
 			</style>
 
-			<table class="beacon-table" id="beacon-sales-report">
+			<table class="merchant-table" id="merchant-sales-report">
 				<thead>
 					<tr>
 						<th>Date</th>
@@ -206,8 +206,8 @@
 						foreach ( $plans as $plan ) :
 					?>
 						<?php
-							$summary = get_post_meta( $plan->ID, 'beacon_pricing_report_summary', true );
-							$transactions = (array) get_post_meta( $plan->ID, 'beacon_pricing_report', true );
+							$summary = get_post_meta( $plan->ID, 'merchant_pricing_report_summary', true );
+							$transactions = (array) get_post_meta( $plan->ID, 'merchant_pricing_report', true );
 
 							if ( is_array( $summary ) ) {
 								if ( array_key_exists( 'count', $summary ) ) $count = $count + $summary['count'];
@@ -218,7 +218,7 @@
 								if ( !empty( $transaction ) ) :
 						?>
 							<tr>
-								<td data-label="Date" data-sort-method="date"><?php echo esc_html( date( 'n/j/Y', current_time( 'timestamp' ) ) ); ?></td>
+								<td data-label="Date" data-sort-method="date"><?php echo esc_html( date( 'n/j/Y', $transaction['date'] ) ); ?></td>
 								<td data-label="Plan"><?php echo $plan->post_title; ?></td>
 								<td data-label="Purchaser"><?php $user = get_user_by( 'id', $transaction['purchaser'] ); echo $user->user_login; ?></td>
 								<td data-label="Purchase Price" data-sort-method="number"><?php echo '$' . esc_html( number_format( $transaction['price'], 2 ) ); ?></td>
@@ -290,7 +290,7 @@
 				    return compareNumber(b, a);
 				  });
 				}());
-				new Tablesort(document.getElementById( 'beacon-sales-report' ));
+				new Tablesort(document.getElementById( 'merchant-sales-report' ));
 			</script>
 		</div>
 		<?php
@@ -300,7 +300,7 @@
 	// Use add_theme_page() to add under Appearance tab (default).
 	// Use add_menu_page() to add as it's own tab.
 	// Use add_submenu_page() to add to another tab.
-	function beacon_theme_reporting_add_page() {
+	function merchant_theme_reporting_add_page() {
 
 		// add_theme_page( $page_title, $menu_title, $capability, $menu_slug, $function );
 		// add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function );
@@ -310,17 +310,17 @@
 		// $capability - Capability required
 		// $menu_slug - Used to uniquely identify the page
 		// $function - Function that renders the options page
-		// $theme_page = add_theme_page( __( 'Theme Options', 'beacon' ), __( 'Theme Options', 'beacon' ), 'edit_theme_options', 'theme_options', 'beacon_theme_reporting_render_page' );
+		// $theme_page = add_theme_page( __( 'Theme Options', 'merchant' ), __( 'Theme Options', 'merchant' ), 'edit_theme_options', 'theme_options', 'merchant_theme_reporting_render_page' );
 
-		// $theme_page = add_menu_page( __( 'Theme Options', 'beacon' ), __( 'Theme Options', 'beacon' ), 'edit_theme_options', 'theme_options', 'beacon_theme_reporting_render_page' );
-		$theme_page = add_submenu_page( 'edit.php?post_type=beacon-prices', __( 'Reporting', 'beacon' ), __( 'Reporting', 'beacon' ), 'edit_theme_options', 'beacon_reporting', 'beacon_theme_reporting_render_page' );
+		// $theme_page = add_menu_page( __( 'Theme Options', 'merchant' ), __( 'Theme Options', 'merchant' ), 'edit_theme_options', 'theme_options', 'merchant_theme_reporting_render_page' );
+		$theme_page = add_submenu_page( 'edit.php?post_type=merchant-prices', __( 'Reporting', 'merchant' ), __( 'Reporting', 'merchant' ), 'edit_theme_options', 'merchant_reporting', 'merchant_theme_reporting_render_page' );
 	}
-	add_action( 'admin_menu', 'beacon_theme_reporting_add_page' );
+	add_action( 'admin_menu', 'merchant_theme_reporting_add_page' );
 
 
 
 	// Restrict access to the theme options page to admins
-	function beacon_reporting_page_capability( $capability ) {
+	function merchant_reporting_page_capability( $capability ) {
 		return 'edit_theme_options';
 	}
-	add_filter( 'option_page_capability_beacon_options', 'beacon_reporting_page_capability' );
+	add_filter( 'option_page_capability_merchant_options', 'merchant_reporting_page_capability' );

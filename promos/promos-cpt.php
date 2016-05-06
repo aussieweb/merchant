@@ -3,22 +3,22 @@
 	/**
 	 * Add custom post type
 	 */
-	function beacon_add_promos_custom_post_type() {
+	function merchant_add_promos_custom_post_type() {
 
 		$labels = array(
-			'name'               => _x( 'Promos', 'post type general name', 'beacon' ),
-			'singular_name'      => _x( 'Promo', 'post type singular name', 'beacon' ),
-			'add_new'            => _x( 'Add New', 'beacon-promos', 'beacon' ),
-			'add_new_item'       => __( 'Add New Promo', 'beacon' ),
-			'edit_item'          => __( 'Edit Promo', 'beacon' ),
-			'new_item'           => __( 'New Promo', 'beacon' ),
-			'all_items'          => __( 'All Promos', 'beacon' ),
-			'view_item'          => __( 'View Promo', 'beacon' ),
-			'search_items'       => __( 'Search Promos', 'beacon' ),
-			'not_found'          => __( 'No promos found', 'beacon' ),
-			'not_found_in_trash' => __( 'No promos found in the Trash', 'beacon' ),
+			'name'               => _x( 'Promos', 'post type general name', 'merchant' ),
+			'singular_name'      => _x( 'Promo', 'post type singular name', 'merchant' ),
+			'add_new'            => _x( 'Add New', 'merchant-promos', 'merchant' ),
+			'add_new_item'       => __( 'Add New Promo', 'merchant' ),
+			'edit_item'          => __( 'Edit Promo', 'merchant' ),
+			'new_item'           => __( 'New Promo', 'merchant' ),
+			'all_items'          => __( 'All Promos', 'merchant' ),
+			'view_item'          => __( 'View Promo', 'merchant' ),
+			'search_items'       => __( 'Search Promos', 'merchant' ),
+			'not_found'          => __( 'No promos found', 'merchant' ),
+			'not_found_in_trash' => __( 'No promos found in the Trash', 'merchant' ),
 			'parent_item_colon'  => '',
-			'menu_name'          => __( 'Promos', 'beacon' ),
+			'menu_name'          => __( 'Promos', 'merchant' ),
 		);
 		$args = array(
 			'labels'        => $labels,
@@ -47,6 +47,6 @@
 			// 	'delete_published_posts' => false,
 			// )
 		);
-		register_post_type( 'beacon-promos', $args );
+		register_post_type( 'merchant-promos', $args );
 	}
-	add_action( 'init', 'beacon_add_promos_custom_post_type' );
+	add_action( 'init', 'merchant_add_promos_custom_post_type' );
