@@ -45,6 +45,7 @@
 		$saved = get_post_meta( $post->ID, 'merchant_pricing_details', true );
 		$defaults = merchant_prices_metabox_defaults();
 		$details = wp_parse_args( $saved, $defaults );
+		$summary = get_post_meta( $post->ID, 'merchant_pricing_report_summary', true );
 
 		?>
 
@@ -117,6 +118,16 @@
 				<div>
 					<label for="merchant_price_max"><?php _e( 'Max # of Purchases', 'merchant' ) ?> (<?php printf( __( 'use %s for unlimited', 'merchant' ), '<code>-1</code>' ); ?>)</label>
 					<input type="number" min="-1" id="merchant_price_max" name="merchant_price[max]" value="<?php echo esc_attr( $details['max'] ); ?>">
+				</div>
+				<br>
+
+				<div>
+					<strong><?php _e( 'Times Purchased', 'merchant' ); ?>:</strong> <?php echo esc_html( is_array( $summary ) && array_key_exists( 'count', $summary ) && !empty( $summary['count'] ) ? $summary['count'] : 0 ); ?>
+				</div>
+				<br>
+
+				<div>
+					<strong><?php _e( 'Total Purchased', 'merchant' ); ?>:</strong> $<?php echo number_format( esc_html( is_array( $summary ) && array_key_exists( 'total', $summary ) && !empty( $summary['total'] ) ? $summary['total'] : 0 ), 2 ); ?>
 				</div>
 				<br>
 

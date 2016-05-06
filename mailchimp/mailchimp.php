@@ -2,17 +2,19 @@
 
 
 	/**
-	 * Add members to MailChimp when they sign up
-	 * @param  string $username The new member's username
-	 * @param  string $email    The new member's email address
+	 * Add members to MailChimp when they purchase
+	 * @param  string $email    The purchaser's email address
 	 */
-	function beacon_add_new_member_to_mailchimp( $username = null, $email = null ) {
+	function merchant_add_new_member_to_mailchimp( $email = null ) {
 
-		// Make sure username and email are provided
-		if ( empty( $username ) || empty( $email ) ) return;
+		// Make sure email is provided
+		if ( empty( $email ) ) return;
 
 		// Get MailChimp API variables
-		$options = beacon_get_theme_options();
+		$options = merchant_get_theme_options();
+
+		// Sanity check
+		if ( empty( $options['mailchimp_api_key'] ) || empty( $options['mailchimp_list_id'] ) || $options['mailchimp_disable'] === 'on' ) return;
 
 		// Create API call
 		$shards = explode( '-', $options['mailchimp_api_key'] );
@@ -45,9 +47,6 @@
 				),
 				'method' => 'PUT',
 				'body' => json_encode(array(
-					'merge_fields' => array(
-						'FNAME' => $username,
-					),
 					'interests' => array(
 						$options['mailchimp_group_id'] => true,
 					),
@@ -60,4 +59,4 @@
 		}
 
 	}
-	add_action( 'wpwebapp_after_signup', 'beacon_add_new_member_to_mailchimp', 10, 2 );
+	add_action( 'wpwebapp_after_signup', 'merchant_add_new_member_to_mailchimp', 10, 2 );
